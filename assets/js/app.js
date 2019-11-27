@@ -72,9 +72,31 @@ generateButton.onclick = function(e) {
         ingredients.push(symbols);
     }
 
-    //If numIngredients is less than 2 return an alert
+    //If numIngredients is less than 2, alert the user and stop the script
     if (numIngredients < 2) {
         return alert("You must select at least two password ingredients.");
     }
+
+    // Assuming all is good above, let's generate that password
+
+    // Initialize a variable to hold the password
+    var newPass = "";
+
+    // This loop will generate a character each time it runs so let's run it numChar times
+    for (var i = 0; i < numChar.value; i++) {
+
+        //First, generate a random number between 0 and the length of ingredients in order to select a random ingredient category
+        var ingredientCategory = Math.floor(Math.random() * ingredients.length);
+
+        //Then, generate a random number between 0 and the length of the specific ingredient category to select a random character
+        var characterIndex = Math.floor(Math.random() * ingredients[ingredientCategory].length);
+
+        //Now let's add the character to our newPass string
+        newPass += ingredients[ingredientCategory][characterIndex];
+
+    }
+
+    //Phew, our new pass is generated! Let's display it in the showPass element
+    showPass.innerText = newPass;
 
 };
