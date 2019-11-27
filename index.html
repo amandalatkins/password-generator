@@ -17,41 +17,55 @@
 
 		<div class="container">
 			
-			<div class="jumbotron text-center">
-				<h1 class="display-3">Password Generator</h1>
+			<div class="jumbotron text-center py-5">
+				<h1 class="display-4">Password Generator</h1>
 				<p class="lead">Your data deserves better than <code>Password1234</code>!</p>
 				<p>Use our generator to make sure your important information is safe and secure.</p>
 			</div>
 
 			<div class="row">
 				<div class="col">
-					<h3>Password Options:</h3>
+					<h3 class="bg-light p-3 bg-light">Password Options:</h3>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col-xs-12 col-md">
-					Length:
-					<input type="number" id="numChar"/>
+					<div class="bg-light p-3 h-100">
+						Length:
+						<input type="number" id="numChar"/>
+					</div>
 				</div>
 				<div class="col-xs-6 col-md">
-					<input type="checkbox" id="incLower"/> Lowercase letters
+					<div class="bg-light p-3 h-100">
+							<input type="checkbox" id="incLower"/> Lowercase letters
+					</div>
 				</div>
 				<div class="col-xs-6 col-md">
-					<input type="checkbox" id="incUpper"/> Uppercase letters
+					<div class="bg-light p-3 h-100">
+						<input type="checkbox" id="incUpper"/> Uppercase letters
+					</div>
 				</div>
 				<div class="col-xs-6 col-md">
-					<input type="checkbox" id="incNum"/> Numbers
+					<div class="bg-light p-3 h-100">
+						<input type="checkbox" id="incNum"/> Numbers
+					</div>
 				</div>
 				<div class="col-xs-6 col-md">
-					<input type="checkbox" id="incSym"/> Symbols
+					<div class="bg-light p-3 h-100">
+						<input type="checkbox" id="incSym"/> Symbols
+					</div>
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="col-6 mx-auto">
-					<div id="showPass"></div>
+				<div class="col"></div>
+				<div class="col-md-6">
+					<div class="pass-container bg-light">
+						<h3 id="showPass" class="text-center my-auto">sdfsadsa</h3>
+					</div>
 				</div>
+				<div class="col"></div>
 			</div>
 			<div class="row">
 				<div class="col-md-3"></div>
