@@ -3,5 +3,33 @@
 }
 
 .pass-container {
-    height: 200px;
+    min-height: 200px;
+    text-align: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+#showPass {
+    font-size: 1em;
+    line-height: 1.5em;
+    font-weight: 700;
+    height: 5em;
+    width: 90%;
+    border: none;
+    background-color: transparent;
+    text-align:center
+}
+
+#generatePass {
+    white-space:nowrap;
+}
+
+@media screen and (max-width: 767px) {
+    .pass-container {
+        min-height: 300px;
+    }
+
+    #showPass {
+        height: 8em;
+    }
 }
