@@ -21,61 +21,28 @@
 				<h1 class="display-4">Password Generator</h1>
 				<p class="lead">Your data deserves better than <code>Password1234</code>!</p>
 				<p>Use our generator to make sure your important information is safe and secure.</p>
-			</div>
 
-			<div class="row">
-				<div class="col">
-					<h3 class="bg-light p-3 bg-light">Password Options:</h3>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-xs-12 col-md">
-					<div class="bg-light p-3 h-100">
-						Length:
-						<input type="number" id="numChar"/>
+				<div class="row my-4">
+					<!-- <div class="col"></div> -->
+					<div class="col">
+						<div class="pass-container d-flex bg-light">
+							<h3 id="showPass" class="align-self-center mx-auto">sdfsadsa</h3>
+						</div>
 					</div>
+					<!-- <div class="col"></div> -->
 				</div>
-				<div class="col-xs-6 col-md">
-					<div class="bg-light p-3 h-100">
-							<input type="checkbox" id="incLower"/> Lowercase letters
+
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-3">
+							<a class="btn btn-primary btn-lg w-100" href="#" role="button" id="generatePass">Generate Password</a>
 					</div>
-				</div>
-				<div class="col-xs-6 col-md">
-					<div class="bg-light p-3 h-100">
-						<input type="checkbox" id="incUpper"/> Uppercase letters
+					<div class="col-md-3">
+							<a class="btn btn-secondary btn-lg w-100" href="#" role="button">Copy Password</a>
 					</div>
+					<div class="col-md-3"></div>
 				</div>
-				<div class="col-xs-6 col-md">
-					<div class="bg-light p-3 h-100">
-						<input type="checkbox" id="incNum"/> Numbers
-					</div>
-				</div>
-				<div class="col-xs-6 col-md">
-					<div class="bg-light p-3 h-100">
-						<input type="checkbox" id="incSym"/> Symbols
-					</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col"></div>
-				<div class="col-md-6">
-					<div class="pass-container bg-light">
-						<h3 id="showPass" class="text-center my-auto">sdfsadsa</h3>
-					</div>
-				</div>
-				<div class="col"></div>
-			</div>
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-3">
-						<a class="btn btn-primary btn-lg w-100" href="#" role="button" id="generatePass">Generate Password</a>
-				</div>
-				<div class="col-md-3">
-						<a class="btn btn-secondary btn-lg w-100" href="#" role="button">Copy Password</a>
-				</div>
-				<div class="col-md-3"></div>
+
 			</div>
 	
 		</div>
