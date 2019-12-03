@@ -15,7 +15,6 @@ var generateButton = document.getElementById('generatePass');
 var showPass = document.getElementById('showPass');
 var copyPass = document.getElementById('copyPass');
 var numChar;
-var ingredients = [];
 
 // Checks whether the character count entered is between 8 and 128 characters
 function checkNumChar(numChar) {
@@ -35,9 +34,34 @@ function checkNumChar(numChar) {
         }
     } else {
         // If the user didn't input an integer, go ahead and return false
-        console.log
         return false;
     }
+}
+
+// This function collects the password ingredients and makes sure that at least two are chosen
+function getPasswordIngredients() {
+
+    // Initialize an array to hold our ingredients;
+    var ingredients = [];
+
+    var useLower = confirm("Would you like to use lowercase letters?");
+    if (useLower === true) {
+        ingredients.push(lowers);
+    }
+    var useUpper = confirm("Would you like to use uppercase letters?");
+    if (useUpper === true) {
+        ingredients.push(uppers);
+    }
+    var useNumbers = confirm("Would you like to use numbers?");
+    if  (useNumbers === true) {
+        ingredients.push(numbers);
+    }
+
+    var useSymbols = confirm("Would you like to use symbols?");
+    if (useSymbols === true) {
+        ingredients.push(symbols);
+    }
+    return ingredients;
 }
 
 // This function collects all the user inputs from the prompts and confirms
@@ -57,10 +81,17 @@ function collectInfo() {
 
     // When we have a valid character count and the user didn't cancel, collect the rest of the info
     if (goodCharCount) {
-       
-        var useLowers = prompt("Would you like to use lowercase Letters"
+        // Prompt the user to confirm the different password ingredients
+       var ingredients = getPasswordIngredients();
 
+       // Continue to prompt the user if they don't select at least two ingredients
+       while (ingredients.length < 2) {
+           alert("You must select two or more ingredients!");
+           ingredients = getPasswordIngredients();
+       } 
     }
+
+    return {numChar: numChar, ingredients: ingredients};
 
 }
 
@@ -69,12 +100,8 @@ generateButton.onclick = function(e) {
 
     // Run collectInfo function and store the values
     var userInput = collectInfo();
-    
-    //Initialize array to hold user-selected password ingredients
-    var ingredients = [];
 
-    //Initialize var that will be used to ensure that a user has selected at least two of the ingredients
-    var numIngredients = 0;
+    console.log(userInput);
 
     // Assuming all is good above, let's generate that password
 
@@ -85,13 +112,13 @@ generateButton.onclick = function(e) {
     for (var i = 0; i < numChar; i++) {
 
         //First, generate a random number between 0 and the length of ingredients in order to select a random ingredient category
-        var ingredientCategory = Math.floor(Math.random() * ingredients.length);
+        var ingredientCategory = Math.floor(Math.random() * userInput.ingredients.length);
 
         //Then, generate a random number between 0 and the length of the specific ingredient category to select a random character
-        var characterIndex = Math.floor(Math.random() * ingredients[ingredientCategory].length);
+        var characterIndex = Math.floor(Math.random() * userInput.ingredients[ingredientCategory].length);
 
         //Now let's add the character to our newPass string
-        newPass += ingredients[ingredientCategory][characterIndex];
+        newPass += userInput.ingredients[ingredientCategory][characterIndex];
 
     }
 
