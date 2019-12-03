@@ -91,19 +91,15 @@ function collectInfo() {
        } 
     }
 
-    return {numChar: numChar, ingredients: ingredients};
+    return ingredients;
 
 }
 
 // Add a click function to the generate password button
-generateButton.onclick = function(e) {
+generateButton.onclick = function() {
 
-    // Run collectInfo function and store the values
-    var userInput = collectInfo();
-
-    console.log(userInput);
-
-    // Assuming all is good above, let's generate that password
+    // Run collectInfo function and validate and store user inputs
+    var ingredients = collectInfo();
 
     // Initialize a variable to hold the password
     var newPass = "";
@@ -112,17 +108,24 @@ generateButton.onclick = function(e) {
     for (var i = 0; i < numChar; i++) {
 
         //First, generate a random number between 0 and the length of ingredients in order to select a random ingredient category
-        var ingredientCategory = Math.floor(Math.random() * userInput.ingredients.length);
+        var ingredientCategory = Math.floor(Math.random() * ingredients.length);
 
-        //Then, generate a random number between 0 and the length of the specific ingredient category to select a random character
-        var characterIndex = Math.floor(Math.random() * userInput.ingredients[ingredientCategory].length);
+        //Then, generate a random number between 0 and the length of the specific ingredient category to select a random character from that category
+        var characterIndex = Math.floor(Math.random() * ingredients[ingredientCategory].length);
 
         //Now let's add the character to our newPass string
-        newPass += userInput.ingredients[ingredientCategory][characterIndex];
+        newPass += ingredients[ingredientCategory][characterIndex];
 
     }
 
     //Phew, our new pass is generated! Let's display it in the showPass element
-    showPass.innerText = newPass;
+    showPass.value = newPass;
 
 };
+
+copyPass.onclick = function() {
+    showPass.select();
+    showPass.setSelectionRange(0,99999);
+    document.execCommand('copy');
+    alert("Your password "+showPass.value+" has been copied to the clipboard!");
+}
