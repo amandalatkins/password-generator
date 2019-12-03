@@ -10,29 +10,65 @@ for (i = 0; i < 10; i++) {
 }
 var symbols = ['!','?','*','&','$','(',')','#'];
 
-// Store our important HTML elements
+// Store our important HTML elements and initialize variables we will use
 var generateButton = document.getElementById('generatePass');
 var showPass = document.getElementById('showPass');
 var copyPass = document.getElementById('copyPass');
-var incLower = document.getElementById('incLower');
-var incUpper = document.getElementById('incUpper');
-var incNum = document.getElementById('incNum');
-var incSym = document.getElementById('incSym');
-var numChar = document.getElementById('numChar');
+var numChar;
+var ingredients = [];
+
+// Checks whether the character count entered is between 8 and 128 characters
+function checkNumChar(numChar) {
+
+    // If the user clicked 'cancel' exit the function
+    if (numChar == null) {
+        return;
+    }
+
+    // First make sure the user inputted a whole number
+    if (Number.isInteger(parseInt(numChar))) {
+        // Then make sure it is between 8 and 128
+        if (numChar < 8 && numChar > 128) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        // If the user didn't input an integer, go ahead and return false
+        console.log
+        return false;
+    }
+}
+
+// This function collects all the user inputs from the prompts and confirms
+function collectInfo() {
+
+    // First let's collect the password length
+    numChar = prompt("How many characters should your password be? Between 8 and 128 characters is required.");
+   
+    // Now let's check that it's within the right character count
+    var goodCharCount = checkNumChar(numChar);
+
+    // If it's not within the right character count, let's run a loop to collect a new password length until it is the correct length
+    while (goodCharCount == false) {
+        numChar = prompt("The character count must be between 8 and 128! Please enter a new password length:");
+        goodCharCount = checkNumChar(numChar);
+    }
+
+    // When we have a valid character count and the user didn't cancel, collect the rest of the info
+    if (goodCharCount) {
+       
+        var useLowers = prompt("Would you like to use lowercase Letters"
+
+    }
+
+}
 
 // Add a click function to the generate password button
 generateButton.onclick = function(e) {
 
-    //First make sure the user set a length and that the length is in the correct range
-    if (numChar.value != "") {
-        if (numChar.value < 8 || numChar.value > 128) {
-            // If the length is incorrect, alert the user and stop the script
-           return alert('The password length must be 8-128 characters.');
-        }
-    } else {
-        // If the length isn't set, alert the user and stop the script
-        return alert('The password length must be 8-128 characters.');
-    }
+    // Run collectInfo function and store the values
+    var userInput = collectInfo();
     
     //Initialize array to hold user-selected password ingredients
     var ingredients = [];
@@ -40,50 +76,13 @@ generateButton.onclick = function(e) {
     //Initialize var that will be used to ensure that a user has selected at least two of the ingredients
     var numIngredients = 0;
 
-    if (incLower.checked == true) {
-        // Log that this ingredient was selected
-        numIngredients++;
-
-        //push the array related to this to the ingredients array
-        ingredients.push(lowers);
-    }
-
-    if (incUpper.checked == true) {
-        // Log that this ingredient was selected
-        numIngredients++;
-
-        //push the array related to this to the ingredients array
-        ingredients.push(uppers);
-    }
-
-    if (incNum.checked == true) {
-        // Log that this ingredient was selected
-        numIngredients++;
-
-        //push the array related to this to the ingredients array
-        ingredients.push(numbers);
-    }
-
-    if (incSym.checked == true) {
-        // Log that this ingredient was selected
-        numIngredients++;
-
-        //push the array related to this to the ingredients array
-        ingredients.push(symbols);
-    }
-
-    //If numIngredients is less than 2, alert the user and stop the script
-    if (numIngredients < 2) {
-        return alert("You must select at least two password ingredients.");
-    }
-
     // Assuming all is good above, let's generate that password
 
     // Initialize a variable to hold the password
     var newPass = "";
 
     // This loop will generate a character each time it runs so let's run it numChar times
-    for (var i = 0; i < numChar.value; i++) {
+    for (var i = 0; i < numChar; i++) {
 
         //First, generate a random number between 0 and the length of ingredients in order to select a random ingredient category
         var ingredientCategory = Math.floor(Math.random() * ingredients.length);
