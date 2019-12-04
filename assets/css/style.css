@@ -10,18 +10,24 @@
 }
 
 #showPass {
-    font-size: 1em;
-    line-height: 1.5em;
+    /* font-size: 1em;
+    line-height: 1.5em; */
     font-weight: 700;
-    height: 5em;
     width: 90%;
     border: none;
     background-color: transparent;
-    text-align:center
+    text-align:center;
+    overflow-wrap: break-word;
 }
 
 #generatePass {
     white-space:nowrap;
+}
+
+#copyPassContainer {
+    /* Copying the password does not work if the input is display: none or visibility:hidden, so instead let's take it out of the normal flow of the DOM and hide it way off the page */
+    position:fixed;
+    left: 10000px;
 }
 
 @media screen and (max-width: 767px) {
@@ -30,7 +36,7 @@
     }
 
     #showPass {
-        height: 8em;
+        font-size: 1.1em;
     }
     #generatePass {
         white-space: pre-wrap;

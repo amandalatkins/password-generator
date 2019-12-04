@@ -8,12 +8,13 @@ var numbers = [];
 for (i = 0; i < 10; i++) {
     numbers.push(i);
 }
-var symbols = ['!','?','*','&','$','(',')','#'];
+var symbols = ['!','?','*','&','$','(',')','#',';'];
 
 // Store our important HTML elements and initialize variables we will use
 var generateButton = document.getElementById('generatePass');
 var showPass = document.getElementById('showPass');
 var copyPass = document.getElementById('copyPass');
+var copyPassContainer = document.getElementById('copyPassContainer');
 var numChar;
 
 // Add a click function to the generate password button
@@ -40,7 +41,8 @@ generateButton.onclick = function() {
     }
 
     //Phew, our new pass is generated! Let's display it in the showPass element
-    showPass.value = newPass;
+    showPass.innerText = newPass;
+    copyPassContainer.value = newPass;
 
 };
 
@@ -56,7 +58,7 @@ function collectInfo() {
 
     // If it's not within the right character count, let's run a loop to collect a new password length until it is the correct length
     while (goodCharCount == false) {
-        numChar = prompt("The character count must be between 8 and 128! Please enter a new password length:");
+        numChar = prompt("The that is an invalid password length. Please enter a new password length between 8 and 128:");
         goodCharCount = checkNumChar(numChar);
     }
 
@@ -75,6 +77,46 @@ function collectInfo() {
     return ingredients;
 
 }
+
+// Checks whether the character count entered is between 8 and 128 characters
+function checkNumChar(numChar) {
+    // If the user clicked 'cancel' exit the function
+    if (numChar == null) {
+        return;
+    }
+
+    // Check to see if there are any letters or symbols in the numChar string
+    var isNotNumbers = findLetters(numChar);
+    if (isNotNumbers) {
+        // If there are, go ahead and ask the user to input numChar again
+        return false;
+    }
+
+    //Store numChar as a number instead of a string
+    numChar = parseInt(numChar);
+    // Then make sure it is between 8 and 128
+    if (numChar < 8 || numChar > 128) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Make sure there are no letters/symbols in numChar
+function findLetters(numChar) {
+    
+    // Loop through the numChar string
+    for (var i = 0; i < numChar.length; i++) {
+        // compare each character to the numbers array
+        if (numbers.indexOf(parseInt(numChar[i])) == -1) {
+            // if the character doesn't exist in the numbers array, it is not a number so return true
+            return true;
+        }
+    }
+    // all numbers? return false!
+    return false;
+}
+    
 
 // This function collects the password ingredients and makes sure that at least two are chosen
 function getPasswordIngredients() {
@@ -103,46 +145,26 @@ function getPasswordIngredients() {
     return ingredients;
 }
 
-// Checks whether the character count entered is between 8 and 128 characters
-function checkNumChar(numChar) {
-
-    // If the user clicked 'cancel' exit the function
-    if (numChar == null) {
-        return;
-    }
-
-    // First make sure the user inputted a whole number
-    if (Number.isInteger(parseInt(numChar))) {
-        //Store numChar as a number instead of a string
-        numChar = parseInt(numChar);
-        // Then make sure it is between 8 and 128
-        if (numChar < 8 && numChar > 128) {
-            return false;
-        } else {
-            return true;
-        }
-    } else {
-        // If the user didn't input an integer, go ahead and return false
-        return false;
-    }
-}
-
 // Add a click function to initiate copy to clipboard
 copyPass.onclick = function() {
 
     // Make sure there is a password
-    if (showPass.value !== "") {
+    if (copyPassContainer.value !== "") {
+
+        // I learned this technique from W3 Schools
+        // https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+
         // Select the text in the ShowPass container
-        showPass.select();
+        copyPassContainer.select();
 
         // Make sure to select all the text (for mobile)
-        showPass.setSelectionRange(0,99999);
+        copyPassContainer.setSelectionRange(0,99999);
 
-        // Tell the page to execute the inherit 'copy' function
+        // Tell the document to execute the inherit 'copy' function
         document.execCommand('copy');
 
         // Alert the user that their new password was copied
-        alert("Your password "+showPass.value+" has been copied to the clipboard!");
+        alert("Your password "+copyPassContainer.value+" has been copied to the clipboard!");
     } else {
         alert("You need to generate a password first!");
     }

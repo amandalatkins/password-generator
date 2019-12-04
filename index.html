@@ -25,7 +25,10 @@
 				<div class="row my-4">
 					<div class="col">
 						<div class="pass-container d-flex bg-light">
-							<textarea id="showPass" class="align-self-center mx-auto align-middle" readonly></textarea>
+							<!-- Let's use an H3 for our showPass container since it styles much more nicely than a textarea -->
+							<h3 id="showPass" class="align-self-center mx-auto align-middle" readonly></h3>
+							<!-- This textarea is needed for copying to clipboard. It is hidden from view. -->
+							<textarea id="copyPassContainer"></textarea>
 						</div>
 					</div>
 				</div>
