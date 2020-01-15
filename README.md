@@ -44,7 +44,7 @@ Open ``index.html`` in your prefered web browser
 
 The following snippet shows how the script randomly assigns characters from randomly chosen categories:
 
-```
+```javascript
     // This loop will generate a character each time it runs so let's run it numChar times
     for (var i = 0; i < numChar; i++) {
 
@@ -62,7 +62,7 @@ The following snippet shows how the script randomly assigns characters from rand
 
 This code snippet shows how the script determines that a user entered a number when asked for password length:
 
-```
+```javascript
 // Make sure there are no letters/symbols in numChar
 function findLetters(numChar) {
     
