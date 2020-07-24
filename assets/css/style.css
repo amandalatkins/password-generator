@@ -30,6 +30,10 @@
     left: 10000px;
 }
 
+.parameter {
+    margin: 0 10px;
+}
+
 @media screen and (max-width: 767px) {
     .pass-container {
         min-height: 0;

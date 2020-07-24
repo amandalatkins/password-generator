@@ -21,7 +21,26 @@
 				<h1 class="display-4">Password Generator</h1>
 				<p class="lead">Your data deserves better than <code>Password1234</code>!</p>
 				<p class="d-none d-md-block">Use our generator to make sure your important information is safe and secure.</p>
+				<div class="row my-4">
+					<div class="col d-flex justify-content-center">
+						<div class="parameter">
+							<input type="checkbox" id="uppercase" name="uppercase" checked> <label for="uppercase">Uppercase Letters</label>
+						</div>
+						<div class="parameter">
+							<input type="checkbox" id="lowercase" name="lowercase" checked> <label for="lowercase">Lowercase Letters</label>
+						</div>
+						<div class="parameter">
+							<input type="checkbox" id="numbers" name="numbers" checked> <label for="numbers">Numbers</label>
+						</div>
+						<div class="parameter">
+							<input type="checkbox" id="symbols" name="symbols" checked> <label for="symbols">Symbols</label>
+						</div>
+						<div class="parameter">
+							<input type="number" id="numChar" name="numChar" value="20" min="8" max="48"> <label for="numChar">Length</label>
+						</div>
 
+					</div>
+				</div>
 				<div class="row my-4">
 					<div class="col">
 						<div class="pass-container d-flex bg-light">
@@ -32,7 +51,11 @@
 						</div>
 					</div>
 				</div>
-
+				<div class="row">
+					<div class="col">
+						<span id="passErrors" class="text-danger"></span>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-lg-2"></div>
 					<div class="col-6 col-lg-4">
@@ -43,7 +66,11 @@
 					</div>
 					<div class="col-lg-2"></div>
 				</div>
-
+				<div class="row">
+					<div class="col">
+						<span id="copySuccess" class="text-success"></span>
+					</div>
+				</div>
 			</div>
 	
 		</div>
